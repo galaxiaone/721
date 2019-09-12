@@ -1,0 +1,43 @@
+{
+  "attributes": [
+    {
+      "trait_type": "category",
+      "value": "megacorp"
+    },  
+    {
+      "trait_type": "species", 
+      "value": "lost_humanity"
+    }, 
+    {
+      "trait_type": "Militarism", 
+      "value": 4
+    },
+    {
+      "trait_type": "Isolationism", 
+      "value": 4
+    },
+    {
+      "trait_type": "Fanaticism", 
+      "value": 1
+    },
+    {
+      "trait_type": "Technology", 
+      "value": 1
+    },
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "production_bonus", 
+      "value": 24
+    }, 
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "research_bonus", 
+      "value": 5
+    }
+  ],
+  "background_color": "000000",
+  "description": "A lost human colony expedition launched in 2454. Now a militaristic tribal society with minimal technological ability.", 
+  "external_url": "https://galaxia.one/", 
+  "image": "http://165.22.77.204:8080/ipfs/QmcVYXmhN62KSeDuGqviQWZCSLDMSAKTotZ9G9n3WbccBp", 
+  "name": "Mova Colony"
+}

@@ -1,0 +1,40 @@
+{
+  "attributes": [
+    {
+       "trait_type": "category",
+       "value": "planet"
+    },  
+    {
+      "trait_type": "size", 
+      "value": "medium"
+    }, 
+    {
+      "trait_type": "type", 
+      "value": "terrestrial"
+    }, 
+    {
+      "trait_type": "habitability", 
+      "value": "uninhabitable"
+    }, 
+    {
+      "display_type": "boost_number", 
+      "trait_type": "base_production", 
+      "value": 40
+    }, 
+    {
+      "display_type": "boost_number", 
+      "trait_type": "base_research", 
+      "value": 10
+    },  
+    {
+      "display_type": "number", 
+      "trait_type": "generation", 
+      "value": 1
+    }
+  ], 
+  "background_color": "000000",
+  "description": "Venus' solid surface is a volcanic landscape covered with extensive plains featuring high volcanic mountains.", 
+  "external_url": "https://galaxia.one/", 
+  "image": "http://165.22.77.204:8080/ipfs/QmU13ygAtehLfHt4fBGjJEUqeRhxhPkbtJBQnvDQdM8maE", 
+  "name": "Venus"
+}

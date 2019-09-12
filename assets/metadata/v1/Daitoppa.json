@@ -1,0 +1,43 @@
+{
+  "attributes": [
+    {
+      "trait_type": "category",
+      "value": "megacorp"
+    },  
+    {
+      "trait_type": "species", 
+      "value": "human"
+    }, 
+    {
+      "trait_type": "Militarism", 
+      "value": 1
+    },
+    {
+      "trait_type": "Isolationism", 
+      "value": 3
+    },
+    {
+      "trait_type": "Fanaticism", 
+      "value": 1
+    },
+    {
+      "trait_type": "Technology", 
+      "value": 4
+    },
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "production_bonus", 
+      "value": 12
+    }, 
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "research_bonus", 
+      "value": 25
+    }
+  ],
+  "background_color": "000000",
+  "description": "Today it offers life extension gene therapy to the hyper rich.", 
+  "external_url": "https://galaxia.one/", 
+  "image": "http://165.22.77.204:8080/ipfs/QmaVBU6DpsstCf4bY3cbGbyDAv4ABvAwGE98FP1DLQwNQL", 
+  "name": "Daitoppa Genetics"
+}

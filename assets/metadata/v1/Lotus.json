@@ -1,0 +1,43 @@
+{
+  "attributes": [
+    {
+      "trait_type": "category",
+      "value": "megacorp"
+    },   
+    {
+      "trait_type": "species", 
+      "value": "android"
+    }, 
+    {
+      "trait_type": "Militarism", 
+      "value": 1
+    },
+    {
+      "trait_type": "Isolationism", 
+      "value": 6
+    },
+    {
+      "trait_type": "Fanaticism", 
+      "value": 1
+    },
+    {
+      "trait_type": "Technology", 
+      "value": 5
+    },
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "production_bonus", 
+      "value": 55
+    }, 
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "research_bonus", 
+      "value": 10
+    }
+  ],
+  "background_color": "000000",
+  "description": " The original company founders were destroyed by their own synthetic life forms, leaving behind only androids and conspiracy theories.", 
+  "external_url": "https://galaxia.one/", 
+  "image": "http://165.22.77.204:8080/ipfs/QmTRHHRPzn4bwm3bPUEg9KZEhA4UoxMtbrqrWJtYnPYiXV", 
+  "name": "Lotus Robotics"
+}

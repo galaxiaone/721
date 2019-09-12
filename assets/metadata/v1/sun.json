@@ -1,0 +1,36 @@
+{
+  "attributes": [
+    {
+      "trait_type": "size",
+      "value": "epic"
+    },
+    {
+      "trait_type": "type",
+      "value": "star"
+    },
+    {
+      "trait_type": "habitability",
+      "value": "uninhabitable"
+    },
+    {
+      "display_type": "boost_number",
+      "trait_type": "base_production",
+      "value": 80
+    },
+    {
+      "display_type": "boost_number",
+      "trait_type": "base_research",
+      "value": 20
+    },
+    {
+      "display_type": "number",
+      "trait_type": "generation",
+      "value": 1
+    }
+  ],
+  "background_color": "000000",
+  "description": "Without the Sun's intense energy there would be no life in the solar system.",
+  "external_url": "https://galaxia.one/",
+  "image": "http://165.22.77.204:8080/ipfs/QmcPepCRuqa31dctKfZXW6hD6wJGmfvmkuHYVYMweqGFjf",
+  "name": "Sun"
+}
