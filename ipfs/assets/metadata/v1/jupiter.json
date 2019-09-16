@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "category",
+            "value": "planet"
+        },
+        {
+            "trait_type": "size",
+            "value": "gigantic"
+        },
+        {
+            "trait_type": "type",
+            "value": "gas giant"
+        },
+        {
+            "trait_type": "habitability",
+            "value": "uninhabitable"
+        },
+        {
+            "display_type": "boost_number",
+            "trait_type": "base_production",
+            "value": 60
+        },
+        {
+            "display_type": "boost_number",
+            "trait_type": "base_research",
+            "value": 10
+        },
+        {
+            "display_type": "number",
+            "trait_type": "generation",
+            "value": 1
+        }
+    ],
+    "background_color": "000000",
+    "description": "Jupiter's Great Red Spot is a gigantic storm that’s about twice the size of Earth and has raged for over a century.",
+    "external_url": "https://galaxia.one/",
+    "image": "https://ipfs.io/ipfs/QmccQRhMfLCyQySYmYoYnkaT3b62LDdzsiX6G5tWaQi2tB",
+    "name": "Jupiter"
+}

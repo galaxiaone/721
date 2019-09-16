@@ -3,3 +3,8 @@
 node_modules
 dist
 build
+.env 
+ipfs/node_modules
+ipfs/data
+ipfs/export
+ipfs/docker_images

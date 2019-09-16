@@ -19,11 +19,6 @@ contract Galaxia is
   address public proxyRegistryAddress;
   mapping (bytes32 => bool) public validUpgrade;
   uint256 public totalSupply;
-  string public constant galaxiaGateway = "http://165.22.77.204:8080/ipfs/";
-  string public constant ipfsGateway = "http://ipfs.io/ipfs/";
-  string public constant ERR_INVALID_UPGRADE = "A";
-  string public constant ERR_NOT_TOKEN_HOLDER = "B";
-  string public constant ERR_TOKEN_DOESNT_EXIST = "C";
 
   /**
   * @dev Contract constructor.
@@ -35,7 +30,7 @@ contract Galaxia is
     proxyRegistryAddress = _proxyRegistryAddress;
     nftName = _name;
     nftSymbol = _symbol;
-    base = galaxiaGateway;
+    gateway = "https://cloudflare-ipfs.com/ipfs/";
   }
 
 
@@ -76,7 +71,7 @@ contract Galaxia is
   * @param _newURI metadata hash for this token
   */
   function addUpgradePath(uint256 _tokenId, string calldata _newURI) external onlyOwner {
-    require(_tokenId < totalSupply || super.ownerOf(_tokenId) == address(0), ERR_TOKEN_DOESNT_EXIST);
+    require(_tokenId < totalSupply || super.ownerOf(_tokenId) == address(0));
     bytes32 upgradeHash = keccak256(abi.encodePacked(_tokenId, _newURI));
     validUpgrade[upgradeHash] = true;
     emit UpgradePathAdded(_tokenId, _newURI);
@@ -89,9 +84,9 @@ contract Galaxia is
   * @param _newURI The new metadata hash for this token
   */
   function upgradeMetadata(uint256 _tokenId, string calldata _newURI) external  {
-    require(super.isOwner(_tokenId, msg.sender), ERR_NOT_TOKEN_HOLDER);
+    require(super.isOwner(_tokenId, msg.sender));
     bytes32 upgradeHash = keccak256(abi.encodePacked(_tokenId, _newURI));
-    require(validUpgrade[upgradeHash], ERR_INVALID_UPGRADE);
+    require(validUpgrade[upgradeHash]);
     validUpgrade[upgradeHash] = false;
     string memory oldURI = idToUri(_tokenId);
     super._setTokenUri(_tokenId, _newURI);
@@ -99,16 +94,14 @@ contract Galaxia is
   }
 
   /**
-  * @dev Flips the current ipfs gateway
-  * @dev Two options: Galaxia server || IPFS server
+  * @dev Changes the ipfs gateway
+  * @param _gatewayURL is the http url for this ipfs gateway
   */
-  function changeBaseURI() external onlyOwner {
-    if (keccak256(abi.encodePacked(base)) == keccak256(abi.encodePacked(galaxiaGateway))) {
-      super._setBaseURI(ipfsGateway);
-    } else {
-      super._setBaseURI(galaxiaGateway);
-    }
+  function changeGateway(string calldata _gatewayURL) external onlyOwner {
+    require(bytes(_gatewayURL).length > 0);
+    gateway = _gatewayURL;
   }
+
 
   event MetadataUpgraded(string indexed _oldURI, string _newURI);
   event UpgradePathAdded(uint256 indexed _tokenID, string _newURI);

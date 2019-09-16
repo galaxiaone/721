@@ -1,0 +1,40 @@
+{
+  "attributes": [
+    {
+       "trait_type": "category",
+       "value": "planet"
+    },  
+    {
+      "trait_type": "size", 
+      "value": "tiny"
+    }, 
+    {
+      "trait_type": "type", 
+      "value": "moon"
+    }, 
+    {
+      "trait_type": "habitability", 
+      "value": "habitable"
+    }, 
+    {
+      "display_type": "boost_number", 
+      "trait_type": "base_production", 
+      "value": 25
+    }, 
+    {
+      "display_type": "boost_number", 
+      "trait_type": "base_research", 
+      "value": 20
+    },  
+    {
+      "display_type": "number", 
+      "trait_type": "generation", 
+      "value": 1
+    }
+  ], 
+  "background_color": "000000",
+  "description": "A cold, dry orb whose surface is studded with craters and strewn with rocks containing rare elements and isotopes.", 
+  "external_url": "https://galaxia.one/", 
+  "image": "https://ipfs.io/ipfs/QmbWoP7YfLrfZz2Bdvp2D8JueHmtodCVcBwK61mmABYwev", 
+  "name": "Moon"
+}

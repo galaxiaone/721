@@ -19,7 +19,7 @@ contract NFTokenMetadata is
   /**
    * @dev The IPFS gateway which will serve the metadata
    */
-  string internal base;
+  string internal gateway;
 
   /**
    * @dev An abbreviated name for NFTokens.
@@ -110,7 +110,7 @@ contract NFTokenMetadata is
   * @dev returns the current baseURI. Can either be IPFS gateway or Galaxia gateway
   */
   function baseTokenURI() public view returns (string memory) {
-    return base;
+    return gateway;
   }
 
   /**
@@ -118,7 +118,7 @@ contract NFTokenMetadata is
   */
   function _setBaseURI(string memory _newBase)
   internal {
-    base = _newBase;
+    gateway = _newBase;
   }
 
   function strConcat(string memory _a, string memory _b)

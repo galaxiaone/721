@@ -1,0 +1,19 @@
+{
+  "name": "ipfs-galaxia",
+  "version": "1.0.0",
+  "description": "Upload and serve IPFS images",
+  "main": "index.js",
+  "author": "kyle dewhurst",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "buffer": "~5.2",
+    "dotenv": "~8.0",
+    "fs": "^0.0.1-security",
+    "interface-ipfs-core": "^0.109.0",
+    "ipfs": "~0.34",
+    "nodemon": "~1.19"
+  }
+}

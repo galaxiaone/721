@@ -44,7 +44,6 @@ async function main() {
                             .on('confirmation', function (confNumber, receipt) {
                                 if (confNumber === 3) {
                                     console.log("nft ", nft.name, " metadata has been upgraded to ", nft.metadata);
-                                    process.stdin.resume();
                                 }
                             })
                             .on('error', function (error) {

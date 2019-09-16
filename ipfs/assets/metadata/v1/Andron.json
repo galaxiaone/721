@@ -1,0 +1,43 @@
+{
+  "attributes": [
+    {
+      "trait_type": "category",
+      "value": "megacorp"
+    },  
+    {
+      "trait_type": "species", 
+      "value": "human"
+    }, 
+    {
+      "trait_type": "Militarism", 
+      "value": 2
+    },
+    {
+      "trait_type": "Isolationism", 
+      "value": 2
+    },
+    {
+      "trait_type": "Fanaticism", 
+      "value": 2
+    },
+    {
+      "trait_type": "Technology", 
+      "value": 6
+    },
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "production_bonus", 
+      "value": 5
+    }, 
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "research_bonus", 
+      "value": 55
+    }  
+  ],
+  "background_color": "000000",
+  "description": "Founded 185 years ago by Andron Yang. At the time, its main business was asteroid mining, now it's a technological powerhouse.", 
+  "external_url": "https://galaxia.one/", 
+  "image": "https://ipfs.io/ipfs/QmbKowEeQgdyeZonP9fwjsYsgyCsWvvHfhkw4gMcR6LK7K", 
+  "name": "Andron Conglomerate"
+}

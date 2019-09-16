@@ -1,57 +1,66 @@
-const HDWalletProvider = require("truffle-hdwallet-provider")
-const web3 = require('web3')
-const NFT_ABI = require('../build/contracts/Galaxia.json');
-const asset_info = require('../assets/deployed-assets.json');
-const fs = require('fs');
+const HDWalletProvider = require('truffle-hdwallet-provider')
+const Web3 = require('web3')
+const assetInfo = require('../ipfs/assets/deployed-assets.json')
+var path = require('path')
+console.log(require('dotenv').config())
+require('dotenv').config({ path: path.join('/.env') })
 
-require('dotenv').config({ path: '../.env' });
-const MNEMONIC = process.env.MNEMONIC
-const INFURA_KEY = process.env.INFURA_KEY
-const NFT_CONTRACT_ADDRESS = process.env.NFT_CONTRACT_ADDRESS
-const OWNER_ADDRESS = process.env.OWNER_ADDRESS
+// Contract ABI & Bytecode
+const NFT_ABI = require('./src/build/Galaxia.json')
+const MNEMONIC = process.env.PRIVATE_KEY
+const INFURA_KEY = process.env.INFURA
+const NFT_CONTRACT_ADDRESS = process.env.CONTRACT
 const NETWORK = process.env.NETWORK
 
+const NUM_PLANETS = assetInfo.length
 
-
-const NUM_PLANETS = asset_info.length;
-
-if (!MNEMONIC || !INFURA_KEY || !OWNER_ADDRESS || !NETWORK) {
-  console.error("Please set a mnemonic, infura key, owner, network, and contract address.")
-  return
+if (!MNEMONIC || !INFURA_KEY || !NETWORK || !NFT_CONTRACT_ADDRESS) {
+  console.log('mnemonic, key, network, address, ', MNEMONIC, INFURA_KEY, NETWORK, NFT_CONTRACT_ADDRESS)
+  console.error('Please set a mnemonic, infura key, owner, network, and contract address.')
+  process.exit(1)
 }
 
-async function main() {
+async function main () {
+  const provider = new HDWalletProvider(MNEMONIC, `https://${NETWORK}.infura.io/v3/${INFURA_KEY}`)
+  const web3Instance = new Web3(provider)
+  let account
+  let galaxia
+  let start
   try {
-    const provider = new HDWalletProvider(MNEMONIC, `https://${NETWORK}.infura.io/v3/${INFURA_KEY}`)
-    const web3Instance = new web3(provider)
-    if (NFT_CONTRACT_ADDRESS) {
-      const nftContract = new web3Instance.eth.Contract(NFT_ABI.abi, NFT_CONTRACT_ADDRESS, { gasLimit: "1000000" });
-      let alreadyMinted = Number(await nftContract.methods.totalSupply().call());
-      console.log("Already minted ", alreadyMinted);
-      console.log("Number to mint ", NUM_PLANETS);
-      if (Number(alreadyMinted) >= Number(NUM_PLANETS)) {
-        console.log("ALL PLANETS ARE ALREADY MINTED");
-        return false;
-      }
-      const start = alreadyMinted;
-      // Planets issued directly to the owner.
-      console.log("start ", start);
-      asset_info.forEach(async asset => {
-        // console.log("asset ", asset); 
-        if (asset.id < start) {
-          console.log("alredy minted ", asset.name);
-        } else {
-          console.log("minting ", asset.name);
-          const receipt = await nftContract.methods.mintTo(asset.metadata, OWNER_ADDRESS).send({ from: OWNER_ADDRESS });
-          console.log("Minted planet ", asset.name, " token id ", asset.id, " at ", receipt.transactionHash);
-        }
-      })
-    }
+    console.log(await web3Instance.eth.accounts._provider.addresses[0])
+    account = await web3Instance.eth.accounts._provider.addresses[0]
+    if (!account) return 'Couldnt initialize owner account'
   } catch (err) {
-    console.log(err);
-    return;
+    return err
   }
-
+  try {
+    if (!NFT_CONTRACT_ADDRESS) return 'Contract address not set in .env file'
+    galaxia = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS, { gasLimit: '1000000' })
+    const alreadyMinted = Number(await galaxia.methods.totalSupply().call())
+    if (Number(alreadyMinted) >= Number(NUM_PLANETS)) {
+      console.log('ALL PLANETS ARE ALREADY MINTED')
+      return false
+    }
+    start = alreadyMinted
+  } catch (err) {
+    return err
+  }
+  // Planets issued directly to the owner.
+  for (const asset of assetInfo) {
+    try {
+      // console.log("asset ", asset);
+      if (asset.id < start) {
+        console.log('alredy minted ', asset.name)
+      } else {
+        console.log('minting.', asset.name, ' tokenID: ', asset.id)
+        // TODO: add confirmation input
+        const receipt = await galaxia.methods.mint(account, asset.metadata).send({ from: account })
+        console.log('Minted planet ', asset.name, ' token id ', asset.id, ' at ', receipt.transactionHash)
+      }
+    } catch (err) {
+      return err
+    }
+  }
 }
 
-main()
+console.log(main())
