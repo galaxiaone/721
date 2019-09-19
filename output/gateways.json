@@ -1,0 +1,128 @@
+[
+    {
+        "name": "cloudflare",
+        "url": "https://cloudflare-ipfs.com/ipfs/",
+        "report": [
+            {
+                "live": true,
+                "time": 1154,
+                "asset": "MovaColony",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 704,
+                "asset": "MovaColony",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 929,
+                "asset": "Distar",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 751,
+                "asset": "Distar",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 1393,
+                "asset": "Kyusa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 1015,
+                "asset": "Kyusa",
+                "type": "metadata"
+            }
+        ]
+    },
+    {
+        "name": "ipfs",
+        "url": "https://ipfs.io/ipfs/",
+        "report": [
+            {
+                "live": true,
+                "time": 1376,
+                "asset": "MovaColony",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 911,
+                "asset": "MovaColony",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 1059,
+                "asset": "Distar",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 1261,
+                "asset": "Distar",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 817,
+                "asset": "Kyusa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 759,
+                "asset": "Kyusa",
+                "type": "metadata"
+            }
+        ]
+    },
+    {
+        "name": "galaxia",
+        "url": "http://159.89.98.184:8080/ipfs/",
+        "report": [
+            {
+                "live": true,
+                "time": 436,
+                "asset": "MovaColony",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 479,
+                "asset": "MovaColony",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 764,
+                "asset": "Distar",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 1294,
+                "asset": "Distar",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 588,
+                "asset": "Kyusa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 959,
+                "asset": "Kyusa",
+                "type": "metadata"
+            }
+        ]
+    }
+]

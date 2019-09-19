@@ -103,13 +103,13 @@ contract NFTokenMetadata is
     validNFToken(_tokenId)
     returns (string memory)
   {
-    return strConcat(baseTokenURI(), _idToUri[_tokenId]);
+    return strConcat(ipfsGateway(), _idToUri[_tokenId]);
   }
 
   /**
   * @dev returns the current baseURI. Can either be IPFS gateway or Galaxia gateway
   */
-  function baseTokenURI() public view returns (string memory) {
+  function ipfsGateway() public view returns (string memory) {
     return gateway;
   }
 

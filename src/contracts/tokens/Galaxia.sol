@@ -33,8 +33,6 @@ contract Galaxia is
     gateway = "https://cloudflare-ipfs.com/ipfs/";
   }
 
-
-
   /**
    * @dev Mints a new NFT.
    * @param _to The address that will own the minted NFT.
@@ -70,16 +68,15 @@ contract Galaxia is
   * @param _tokenId ID of this token
   * @param _newURI metadata hash for this token
   */
-  function addUpgradePath(uint256 _tokenId, string calldata _newURI) external onlyOwner {
-    require(_tokenId < totalSupply || super.ownerOf(_tokenId) == address(0));
+  function addUpgradePath(uint256 _tokenId, string calldata _newURI, uint8 _version) external onlyOwner {
+    require(_tokenId < totalSupply);
     bytes32 upgradeHash = keccak256(abi.encodePacked(_tokenId, _newURI));
     validUpgrade[upgradeHash] = true;
-    emit UpgradePathAdded(_tokenId, _newURI);
+    emit UpgradePathAdded(_tokenId, _newURI, _version);
   }
 
     /**
   * @dev Token holder can upgrade to one of the upgrade paths supplied by the Galaxia owner
-  * @dev Note: token holders will not be able to downgrade back to the previous version
   * @param _tokenId The ID of this token
   * @param _newURI The new metadata hash for this token
   */
@@ -87,7 +84,6 @@ contract Galaxia is
     require(super.isOwner(_tokenId, msg.sender));
     bytes32 upgradeHash = keccak256(abi.encodePacked(_tokenId, _newURI));
     require(validUpgrade[upgradeHash]);
-    validUpgrade[upgradeHash] = false;
     string memory oldURI = idToUri(_tokenId);
     super._setTokenUri(_tokenId, _newURI);
     emit MetadataUpgraded(oldURI, _newURI);
@@ -99,11 +95,13 @@ contract Galaxia is
   */
   function changeGateway(string calldata _gatewayURL) external onlyOwner {
     require(bytes(_gatewayURL).length > 0);
+    emit GatewayChanged(gateway, _gatewayURL);
     gateway = _gatewayURL;
   }
 
 
   event MetadataUpgraded(string indexed _oldURI, string _newURI);
-  event UpgradePathAdded(uint256 indexed _tokenID, string _newURI);
+  event UpgradePathAdded(uint256 indexed _tokenID, string _newURI, uint8 _version);
+  event GatewayChanged(string indexed _old, string _new);
 
 }

@@ -1,12 +1,14 @@
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
-const assetInfo = require('../ipfs/assets/deployed-assets.json')
 var path = require('path')
-console.log(require('dotenv').config())
-require('dotenv').config({ path: path.join('/.env') })
+// console.log(require('dotenv').config())
+const root = path.resolve('.')
+require('dotenv').config({ path: path.join(root, '/.env') })
 
 // Contract ABI & Bytecode
-const NFT_ABI = require('./src/build/Galaxia.json')
+const NFT_ABI = require(path.join(root, '/src/build/Galaxia.json'))
+const assetInfo = require(path.join(root, '/ipfs/assets/deployed-assets.json'))
+
 const MNEMONIC = process.env.PRIVATE_KEY
 const INFURA_KEY = process.env.INFURA
 const NFT_CONTRACT_ADDRESS = process.env.CONTRACT
@@ -36,6 +38,8 @@ async function main () {
   try {
     if (!NFT_CONTRACT_ADDRESS) return 'Contract address not set in .env file'
     galaxia = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS, { gasLimit: '1000000' })
+    const galaxiaOwner = await galaxia.methods.owner().call()
+    if (account !== galaxiaOwner) return 'Supplied private key doesnt match owner of contract'
     const alreadyMinted = Number(await galaxia.methods.totalSupply().call())
     if (Number(alreadyMinted) >= Number(NUM_PLANETS)) {
       console.log('ALL PLANETS ARE ALREADY MINTED')
@@ -61,6 +65,7 @@ async function main () {
       return err
     }
   }
+  return 'Successfully minted all planets'
 }
 
 console.log(main())

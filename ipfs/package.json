@@ -6,7 +6,7 @@
   "author": "kyle dewhurst",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "buffer": "~5.2",

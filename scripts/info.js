@@ -23,7 +23,7 @@ async function main () {
   if (NFT_CONTRACT_ADDRESS) {
     const nftContract = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS, { gasLimit: '1000000' })
     const totalSupply = await nftContract.methods.totalSupply().call()
-    const baseURI = await nftContract.methods.baseTokenURI().call()
+    const baseURI = await nftContract.methods.ipfsGateway().call()
     console.log('Total supply ', totalSupply)
     console.log('Base URI ', baseURI)
     const i = 1

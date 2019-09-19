@@ -1,25 +1,46 @@
 const util = require('util')
 const ethers = require('ethers')
 const fs = require('fs')
+const verifier = require('sol-verifier')
+
+const path = require('path')
 console.log(require('dotenv').config())
-require('dotenv').config({ path: __dirname + '/.env' })
-const projectRoot = __dirname.slice(0, __dirname.length - 7)
+require('dotenv').config({ path: path.join('/.env') })
+const root = path.resolve('.')
 
 // Contract ABI & Bytecode
-const GALAXIA_ABI_LOCATION = require(projectRoot + 'src/build/Galaxia.json')
-const GALAXIA_BYTECODE_LOCATION = projectRoot + 'src/build/Galaxia.bin'
+const GALAXIA_ABI = require(path.join(root, '/src/build/Galaxia.json'))
+const GALAXIA_BYTECODE_LOCATION = path.join(root, 'src/build/Galaxia.bin')
+const galaxiaBuild = require(path.join(root, '/build/Galaxia.json'))
+const contractPath = path.join(root, '/src/contracts/tokens/Galaxia.sol')
+
+console.log('galaxia abi ', GALAXIA_BYTECODE_LOCATION)
 
 // Environment variables
 const INFURA_KEY = process.env.INFURA
 const NETWORK = process.env.NETWORK
-const MNEMONIC = process.env.KEY
-const GATEWAY = process.env.GATEWAY
+const MNEMONIC = process.env.PRIVATE_KEY
+const ETHERSCAN = process.env.ETHERSCAN_API
 
 const readFile = util.promisify(fs.readFile)
 
-if (!MNEMONIC || !INFURA_KEY || !NETWORK) {
+if (!MNEMONIC || !INFURA_KEY || !NETWORK || !ETHERSCAN) {
   console.error('Please set a mnemonic, infura key, and network,')
   process.exit(1)
+}
+
+const etherscanVerify = async (deployedAddress, constructorParams) => {
+  const data = {
+    key: ETHERSCAN, // Etherscan API key (required)
+    path: contractPath, // Contract file path(required)
+    contractAddress: deployedAddress, // Contract address (required)
+    network: NETWORK, // Ethereum network used (required)
+    contractName: 'Galaxia', // Contract name, only if contract file has more than one contracts
+    cvalues: constructorParams, // constructor values in array, only if contract has constructor
+    optimizationFlag: false // Set `true` to enable optimization (Default: false)
+  }
+  await verifier.verifyContract(data)
+  return true
 }
 
 async function main () {
@@ -27,20 +48,31 @@ async function main () {
     const infuraProvider = new ethers.providers.InfuraProvider(NETWORK, INFURA_KEY)
     const wallet = new ethers.Wallet(MNEMONIC, infuraProvider)
     console.log('owner ', wallet.address)
+    // TODO: fix deploy with solcjs output
     const bytecode = await readFile(GALAXIA_BYTECODE_LOCATION, 'hex')
-    const contractFactory = new ethers.ContractFactory(GALAXIA_ABI_LOCATION, bytecode)
-    const contractSigned = contractFactory.connect(wallet)
-    const gasLimit = ethers.utils.bigNumberify(5000000)
-    const proxyAddress = ethers.utils.getAddress()
-    const galaxia = await contractSigned.deploy('Galaxia', 'GAX', proxyAddress, { gasLimit: gasLimit })
+    const Galaxia = new ethers.ContractFactory(GALAXIA_ABI, galaxiaBuild.Galaxia.evm.bytecode, wallet)
+    // const Galaxia = new ethers.ContractFactory(galaxiaBuild.Galaxia.abi, galaxiaBuild.Galaxia.evm.bytecode, wallet)
+    const gasLimit = ethers.utils.bigNumberify(6000000)
+    const gasPrice = ethers.utils.bigNumberify(20000000000) // 20 gwei
+    const proxyAddress = ethers.utils.getAddress('0xf57b2c51ded3a29e6891aba85459d600256cf317')
+    const tokenName = 'Galaxia'
+    const symbol = 'GAX'
+    const galaxia = await Galaxia.deploy(tokenName, symbol, proxyAddress, { gasLimit: gasLimit, gasPrice: gasPrice })
     console.log('galaxia address ', galaxia.address)
-    console.log('tx hash ', galaxia.deployTransaction.hash)
+    console.log('deploy transaction ', galaxia.deployTransaction)
+    const encoder = ethers.utils.defaultAbiCoder
+    const constructorHex = encoder.encode(['string', 'string', 'address'], [tokenName, symbol, proxyAddress])
+    console.log('contructor args ', constructorHex)
     const tx = await galaxia.deployed()
-    console.log('transaction complete ', tx)
+    // const constructorParams = [tokenName, symbol, proxyAddress]
+    // const verified = await etherscanVerify(galaxia.address, constructorParams)
+    // if (!verified) return ('couldnt verify tx check etherscan ', galaxia.address)
+    // console.log('transaction complete ', tx)
+    return ('contract at ', galaxia.address)
   } catch (err) {
     console.log(err)
     process.exit(1)
   }
 }
 
-main()
+console.log(main())

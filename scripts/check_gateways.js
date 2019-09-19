@@ -1,8 +1,11 @@
 const wget = require('node-wget')
 const util = require('util')
-const ethers = require('ethers')
+// const ethers = require('ethers')
 const fs = require('fs')
-require('dotenv')
+var path = require('path')
+// console.log(require('dotenv').config())
+const root = path.resolve('.')
+// require('dotenv')
 
 const GALAXIA_ABI = require('../src/build/Galaxia.json')
 
@@ -22,46 +25,28 @@ const gatewayBenchmark = [
   {
     name: 'cloudflare',
     url: 'https://cloudflare-ipfs.com/ipfs/',
-    live: false,
-    speed: 0
+    report: []
   },
   {
     name: 'ipfs',
     url: 'https://ipfs.io/ipfs/',
-    live: false,
-    speed: 0
+    report: []
   },
   {
     name: 'galaxia',
     url: 'http://159.89.98.184:8080/ipfs/',
-    live: false,
-    speed: 0
+    report: []
   }
 ]
-const GATEWAYS = ['cloudflare', 'ipfs', 'galaxia']
 
-const assetData = []
-
-const deadAssets = [
-  // {
-  //     id: 0
-  //     gateway: {}
-  // }
-]
+const deadAssets = []
 
 const readDir = util.promisify(fs.readdir)
 const readFile = util.promisify(fs.readFile)
 const getAsset = util.promisify(wget)
+const wait = util.promisify(setTimeout)
 
-async function getFileData (data) {
-  return await readFile(data)
-}
-
-async function getFileDir (dir) {
-  return await readDir(dir)
-}
-
-function checkParity (imageFiles, metadataFiles) {
+function checkDirectoryMatch (imageFiles, metadataFiles) {
   if (metadataFiles.length !== imageFiles.length) {
     console.log('Number of metadata files dont match number of image files!')
     process.exit(1)
@@ -74,21 +59,19 @@ function getRandomInt (max) {
 
 async function main () {
   try {
-    const gifFiles = await getFileDir(IMAGES_DIR)
-    const metadataFiles = await getFileDir(METADATA_DIR)
-    checkParity(gifFiles, metadataFiles)
-    for (let i = 0; i < gifFiles.length; i++) {
+    const gifFiles = await readDir(IMAGES_DIR)
+    const metadataFiles = await readDir(METADATA_DIR)
+    checkDirectoryMatch(gifFiles, metadataFiles)
+    for (let i = 0; i < 3; i++) {
+      await wait(500)
       const data = { id: '', imageHash: '', metadata: '', name: '' }
       let gifLocation
       let metadataLocation
       let ipfsHash
+      let iter = 0
+      const rand = getRandomInt(gifFiles.length)
       for (const gateway of gatewayBenchmark) {
         try {
-        //   const max = gifFiles.length - 1
-        //   const k = getRandomInt(max)
-        //   const rand = max % k
-          const rand = i
-          //   console.log('random number ', rand)
           const GIF = gifFiles[rand]
           const Metadata = metadataFiles[rand]
           ipfsHash = IPFS_HASHES[rand]
@@ -104,45 +87,81 @@ async function main () {
           data.id = rand
           data.name = assetName
 
-          // upload gif image
-          const gif_data = await getFileData(gifLocation)
-          const meta_data = await getFileData(metadataLocation)
+          // // TODO: check data hashes
+          // const gif_data = await readFile(gifLocation)
+          // const meta_data = await readFile(metadataLocation)
 
-          const response = await getAsset({
-            url: `${gateway.url}${ipfsHash.imageHash}`,
-            dest: '/tmp/', // destination path or path with filenname, default is ./
-            timeout: 2000 // duration to wait for request fulfillment in milliseconds, default is 2 seconds
-          })
-          const responseMeta = await getAsset({
-            url: `${gateway.url}${ipfsHash.metadata}`,
-            dest: '/tmp/', // destination path or path with filenname, default is ./
-            timeout: 2000 // duration to wait for request fulfillment in milliseconds, default is 2 seconds
-          })
-          if (!response) {
-            deadAssets.push({ gateway: gateway, id: data.id, name: data.name, file: gifLocation, hash: ipfsHash.imageHash })
-            gateway.live = false
-            console.log('WARNING: ', gateway.name, ' is not serving file ', gifLocation)
-          } else {
-            gateway.live = true
-            console.log(gateway.name, ' returned asset data properly ', data.name)
+          const imageRequest = {
+            live: true,
+            time: 0,
+            asset: data.name,
+            type: 'image'
           }
-          if (!responseMeta) {
-            deadAssets.push({ gateway: gateway, id: data.id, name: data.name, file: metadataLocation, hash: ipfsHash.metadata })
-            gateway.live = false
-            console.log('WARNING: ', gateway.name, ' is not serving file ', metadataLocation)
-          } else {
-            gateway.live = true
-            console.log(gateway.name, ' returned asset data properly ', data.name)
+          const responseStart = Date.now()
+          try {
+            await getAsset({
+              url: `${gateway.url}${ipfsHash.imageHash}`,
+              dest: '/tmp/', // destination path or path with filenname, default is ./
+              timeout: 4000 // duration to wait for request fulfillment in milliseconds, default is 2 seconds
+            })
+          } catch (err) {
+            imageRequest.live = false
+            deadAssets.push({ gateway: gateway.name, id: data.id, name: data.name, file: gifLocation, hash: ipfsHash.imageHash })
+          } finally {
+            imageRequest.time = Date.now() - responseStart
+            gatewayBenchmark[iter].report.push(imageRequest)
           }
+
+          const metadataRequest = {
+            live: true,
+            time: 0,
+            asset: data.name,
+            type: 'metadata'
+          }
+          const metadataTime = Date.now()
+          try {
+            await getAsset({
+              url: `${gateway.url}${ipfsHash.imageHash}`,
+              dest: '/tmp/', // destination path or path with filenname, default is ./
+              timeout: 4000 // duration to wait for request fulfillment in milliseconds, default is 2 seconds
+            })
+          } catch (err) {
+            metadataRequest.live = false
+            deadAssets.push({ gateway: gateway.name, id: data.id, name: data.name, file: gifLocation, hash: ipfsHash.imageHash })
+          } finally {
+            metadataRequest.time = Date.now() - metadataTime
+            gatewayBenchmark[iter].report.push(metadataRequest)
+          }
+          iter++
         } catch (err) {
           console.log(err)
-          deadAssets.push({ gateway: gateway, id: data.id, name: data.name, file: gifLocation, hash: ipfsHash.imageHash })
         }
       }
     }
     console.log('dead assets ', deadAssets)
+    const gatewaysJson = JSON.stringify(gatewayBenchmark, null, 4)
+    console.log('gateways ', gatewaysJson)
+    for (const gateway of gatewayBenchmark) {
+      let totalTime = 0
+      if (!gateway.report) break
+      for (const r of gateway.report) {
+        totalTime += r.time
+      }
+      console.log(gateway.name, ' avg time ', (totalTime / gateway.report.length))
+    }
+    const outputFile = path.join(root, '/output/gateways.json')
+    fs.writeFile(outputFile, gatewaysJson, function (err) {
+      if (err) {
+        console.log(err)
+        process.exit(1)
+      }
+      console.log('The file was saved!')
+    })
+
+    // TODO: compare speeds across gateways and notify owners of failed gateways
   } catch (err) {
     console.log(err)
+    process.exit(1)
   }
 }
 

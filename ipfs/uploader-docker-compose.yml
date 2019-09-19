@@ -1,0 +1,8 @@
+version: '2'
+services:  
+  app:
+    build: .
+    image: galaxia-uploader
+    working_dir: /home/kyle/uploader
+    volumes:
+      - "./assets:/home/kyle/uploader/assets"
