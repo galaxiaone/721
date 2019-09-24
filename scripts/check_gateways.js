@@ -36,6 +36,11 @@ const gatewayBenchmark = [
     name: 'galaxia',
     url: 'http://159.89.98.184:8080/ipfs/',
     report: []
+  },
+  {
+    name: 'backup',
+    url: 'http://165.22.225.147:8080/ipfs/',
+    report: []
   }
 ]
 
@@ -71,6 +76,7 @@ async function main () {
       let iter = 0
       const rand = getRandomInt(gifFiles.length)
       for (const gateway of gatewayBenchmark) {
+        console.log('checking asset for gateway ', gateway.name)
         try {
           const GIF = gifFiles[rand]
           const Metadata = metadataFiles[rand]

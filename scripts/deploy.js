@@ -48,13 +48,15 @@ async function main () {
     const infuraProvider = new ethers.providers.InfuraProvider(NETWORK, INFURA_KEY)
     const wallet = new ethers.Wallet(MNEMONIC, infuraProvider)
     console.log('owner ', wallet.address)
-    // TODO: fix deploy with solcjs output
-    const bytecode = await readFile(GALAXIA_BYTECODE_LOCATION, 'hex')
-    const Galaxia = new ethers.ContractFactory(GALAXIA_ABI, galaxiaBuild.Galaxia.evm.bytecode, wallet)
-    // const Galaxia = new ethers.ContractFactory(galaxiaBuild.Galaxia.abi, galaxiaBuild.Galaxia.evm.bytecode, wallet)
-    const gasLimit = ethers.utils.bigNumberify(6000000)
-    const gasPrice = ethers.utils.bigNumberify(20000000000) // 20 gwei
-    const proxyAddress = ethers.utils.getAddress('0xf57b2c51ded3a29e6891aba85459d600256cf317')
+    // TODO: fix deploy with solcjs --bin output
+    // const bytecode = await readFile(GALAXIA_BYTECODE_LOCATION, 'hex')
+    // const Galaxia = new ethers.ContractFactory(GALAXIA_ABI, galaxiaBuild.Galaxia.evm.bytecode, wallet)
+    const Galaxia = new ethers.ContractFactory(galaxiaBuild.Galaxia.abi, galaxiaBuild.Galaxia.evm.bytecode, wallet)
+    const gasLimit = ethers.utils.bigNumberify(5000000)
+    const gasPrice = ethers.utils.bigNumberify(2000000000) // 20 gwei
+    let proxyAddress
+    if (NETWORK === 'mainnet') proxyAddress = ethers.utils.getAddress('0xa5409ec958c83c3f309868babaca7c86dcb077c1')
+    else proxyAddress = ethers.utils.getAddress('0xf57b2c51ded3a29e6891aba85459d600256cf317')
     const tokenName = 'Galaxia'
     const symbol = 'GAX'
     const galaxia = await Galaxia.deploy(tokenName, symbol, proxyAddress, { gasLimit: gasLimit, gasPrice: gasPrice })

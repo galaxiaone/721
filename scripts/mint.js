@@ -1,8 +1,8 @@
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
 var path = require('path')
-// console.log(require('dotenv').config())
 const root = path.resolve('.')
+
 require('dotenv').config({ path: path.join(root, '/.env') })
 
 // Contract ABI & Bytecode
@@ -29,28 +29,35 @@ async function main () {
   let galaxia
   let start
   try {
-    console.log(await web3Instance.eth.accounts._provider.addresses[0])
-    account = await web3Instance.eth.accounts._provider.addresses[0]
+    account = web3Instance.utils.toChecksumAddress(await web3Instance.eth.accounts._provider.addresses[0])
     if (!account) return 'Couldnt initialize owner account'
   } catch (err) {
-    return err
+    console.log(err)
   }
   try {
-    if (!NFT_CONTRACT_ADDRESS) return 'Contract address not set in .env file'
+    if (!NFT_CONTRACT_ADDRESS) {
+      console.log('Contract address not set in .env file')
+      process.exit(1)
+    }
     galaxia = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS, { gasLimit: '1000000' })
     const galaxiaOwner = await galaxia.methods.owner().call()
-    if (account !== galaxiaOwner) return 'Supplied private key doesnt match owner of contract'
+    console.log('account, ', account, ' galaxia ownner ', galaxiaOwner)
+    if (account !== galaxiaOwner) {
+      console.log('Supplied private key doesnt match owner of contract')
+      process.exit(1)
+    }
     const alreadyMinted = Number(await galaxia.methods.totalSupply().call())
     if (Number(alreadyMinted) >= Number(NUM_PLANETS)) {
       console.log('ALL PLANETS ARE ALREADY MINTED')
-      return false
+      process.exit(1)
     }
     start = alreadyMinted
   } catch (err) {
-    return err
+    console.log(err)
   }
   // Planets issued directly to the owner.
   for (const asset of assetInfo) {
+    console.log('about to mint asset')
     try {
       // console.log("asset ", asset);
       if (asset.id < start) {
@@ -58,14 +65,15 @@ async function main () {
       } else {
         console.log('minting.', asset.name, ' tokenID: ', asset.id)
         // TODO: add confirmation input
-        const receipt = await galaxia.methods.mint(account, asset.metadata).send({ from: account })
+        const gasPrice = '10000000000' // 20 gwei
+        const receipt = await galaxia.methods.mint(account, asset.metadata).send({ from: account, gasPrice: gasPrice })
         console.log('Minted planet ', asset.name, ' token id ', asset.id, ' at ', receipt.transactionHash)
       }
     } catch (err) {
-      return err
+      console.log(err)
     }
   }
   return 'Successfully minted all planets'
 }
 
-console.log(main())
+main()

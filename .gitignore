@@ -8,3 +8,5 @@ ipfs/node_modules
 ipfs/data
 ipfs/export
 ipfs/docker_images
+output/gateways.json
+output
