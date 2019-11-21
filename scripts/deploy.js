@@ -4,17 +4,12 @@ const fs = require('fs')
 const verifier = require('sol-verifier')
 
 const path = require('path')
-console.log(require('dotenv').config())
 require('dotenv').config({ path: path.join('/.env') })
 const root = path.resolve('.')
 
 // Contract ABI & Bytecode
-const GALAXIA_ABI = require(path.join(root, '/src/build/Galaxia.json'))
-const GALAXIA_BYTECODE_LOCATION = path.join(root, 'src/build/Galaxia.bin')
 const galaxiaBuild = require(path.join(root, '/build/Galaxia.json'))
 const contractPath = path.join(root, '/src/contracts/tokens/Galaxia.sol')
-
-console.log('galaxia abi ', GALAXIA_BYTECODE_LOCATION)
 
 // Environment variables
 const INFURA_KEY = process.env.INFURA
@@ -48,25 +43,19 @@ async function main () {
     const infuraProvider = new ethers.providers.InfuraProvider(NETWORK, INFURA_KEY)
     const wallet = new ethers.Wallet(MNEMONIC, infuraProvider)
     console.log('owner ', wallet.address)
-    // TODO: fix deploy with solcjs --bin output
-    // const bytecode = await readFile(GALAXIA_BYTECODE_LOCATION, 'hex')
-    // const Galaxia = new ethers.ContractFactory(GALAXIA_ABI, galaxiaBuild.Galaxia.evm.bytecode, wallet)
     const Galaxia = new ethers.ContractFactory(galaxiaBuild.Galaxia.abi, galaxiaBuild.Galaxia.evm.bytecode, wallet)
     const gasLimit = ethers.utils.bigNumberify(5000000)
     const gasPrice = ethers.utils.bigNumberify(2000000000) // 20 gwei
-    let proxyAddress
-    if (NETWORK === 'mainnet') proxyAddress = ethers.utils.getAddress('0xa5409ec958c83c3f309868babaca7c86dcb077c1')
-    else proxyAddress = ethers.utils.getAddress('0xf57b2c51ded3a29e6891aba85459d600256cf317')
     const tokenName = 'Galaxia'
     const symbol = 'GAX'
-    const galaxia = await Galaxia.deploy(tokenName, symbol, proxyAddress, { gasLimit: gasLimit, gasPrice: gasPrice })
+    const galaxia = await Galaxia.deploy(tokenName, symbol, { gasLimit: gasLimit, gasPrice: gasPrice })
     console.log('galaxia address ', galaxia.address)
     console.log('deploy transaction ', galaxia.deployTransaction)
     const encoder = ethers.utils.defaultAbiCoder
-    const constructorHex = encoder.encode(['string', 'string', 'address'], [tokenName, symbol, proxyAddress])
+    const constructorHex = encoder.encode(['string', 'string'], [tokenName, symbol])
     console.log('contructor args ', constructorHex)
     const tx = await galaxia.deployed()
-    // const constructorParams = [tokenName, symbol, proxyAddress]
+    // const constructorParams = [tokenName, symbol]
     // const verified = await etherscanVerify(galaxia.address, constructorParams)
     // if (!verified) return ('couldnt verify tx check etherscan ', galaxia.address)
     // console.log('transaction complete ', tx)

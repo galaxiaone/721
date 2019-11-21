@@ -10,7 +10,6 @@ interface Data {
   bob?: string;
   jane?: string;
   sara?: string;
-  openSea?: string;
   zeroAddress?: string;
   id1?: string;
   id2?: string;
@@ -34,7 +33,6 @@ spec.beforeEach(async (ctx) => {
   ctx.set('bob', accounts[1]);
   ctx.set('jane', accounts[2]);
   ctx.set('sara', accounts[3]);
-  ctx.set('openSea', "0xf57b2c51ded3a29e6891aba85459d600256cf317");
   ctx.set('zeroAddress', '0x0000000000000000000000000000000000000000');
 });
 
@@ -50,7 +48,7 @@ spec.beforeEach(async (ctx) => {
   const nfToken = await ctx.deploy({ 
     src: './build/Galaxia.json',
     contract: 'Galaxia',
-    args: ['Galaxia','GAX', '0xf57b2c51ded3a29e6891aba85459d600256cf317']
+    args: ['Galaxia','GAX']
   });
   ctx.set('nfToken', nfToken);
 });

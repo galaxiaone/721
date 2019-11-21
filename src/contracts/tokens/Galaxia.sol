@@ -3,12 +3,6 @@ pragma solidity 0.5.6;
 import "../tokens/nf-token-metadata.sol";
 import "../ownership/ownable.sol";
 
-contract OwnableDelegateProxy { }
-
-contract ProxyRegistry {
-    mapping(address => OwnableDelegateProxy) public proxies;
-}
-
 /**
  * @dev This is an example contract implementation of NFToken with enumerable extension.
  */
@@ -16,7 +10,6 @@ contract Galaxia is
   NFTokenMetadata,
   Ownable
 {
-  address public proxyRegistryAddress;
   mapping (bytes32 => bool) public validUpgrade;
   uint256 public totalSupply;
 
@@ -25,9 +18,8 @@ contract Galaxia is
   * @param _name A descriptive name for a collection of NFTs.
   * @param _symbol An abbreviated name for NFTokens.
   */
-  constructor(string memory _name, string memory _symbol, address _proxyRegistryAddress)
+  constructor(string memory _name, string memory _symbol)
   public {
-    proxyRegistryAddress = _proxyRegistryAddress;
     nftName = _name;
     nftSymbol = _symbol;
     gateway = "https://cloudflare-ipfs.com/ipfs/";
@@ -44,22 +36,6 @@ contract Galaxia is
     super._mint(_to, totalSupply);
     super._setTokenUri(totalSupply, _uri);
     totalSupply++;
-  }
-
-    /**
-   * Override isApprovedForAll to whitelist user's OpenSea proxy accounts to enable gas-less listings.
-   */
-  function isApprovedForAll(address _owner, address _operator)
-    public
-    view
-    returns (bool) {
-    // Whitelist OpenSea proxy contract for easy trading.
-    ProxyRegistry proxyRegistry = ProxyRegistry(proxyRegistryAddress);
-    if (address(proxyRegistry.proxies(_owner)) == _operator) {
-        return true;
-    }
-
-    return super.isApprovedForAll(_owner, _operator);
   }
 
     /**

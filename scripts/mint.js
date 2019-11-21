@@ -28,17 +28,18 @@ async function main () {
   let account
   let galaxia
   let start
+  if (!NFT_CONTRACT_ADDRESS) {
+    console.log('Contract address not set in .env file')
+    process.exit(1)
+  }
   try {
     account = web3Instance.utils.toChecksumAddress(await web3Instance.eth.accounts._provider.addresses[0])
     if (!account) return 'Couldnt initialize owner account'
   } catch (err) {
     console.log(err)
+    process.exit(1)
   }
   try {
-    if (!NFT_CONTRACT_ADDRESS) {
-      console.log('Contract address not set in .env file')
-      process.exit(1)
-    }
     galaxia = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS, { gasLimit: '1000000' })
     const galaxiaOwner = await galaxia.methods.owner().call()
     console.log('account, ', account, ' galaxia ownner ', galaxiaOwner)
@@ -73,7 +74,7 @@ async function main () {
       console.log(err)
     }
   }
-  return 'Successfully minted all planets'
+  console.log('Successfully minted all planets')
 }
 
 main()

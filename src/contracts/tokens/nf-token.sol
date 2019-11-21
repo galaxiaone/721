@@ -94,7 +94,7 @@ contract NFToken is
   ) 
   {
     address tokenOwner = idToOwner[_tokenId];
-    require(tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender]);
+    require(tokenOwner == msg.sender || isApprovedForAll(tokenOwner, msg.sender));
     _;
   }
 
@@ -104,13 +104,13 @@ contract NFToken is
    */
   modifier canTransfer(
     uint256 _tokenId
-  ) 
+  )
   {
     address tokenOwner = idToOwner[_tokenId];
     require(
       tokenOwner == msg.sender
       || idToApproval[_tokenId] == msg.sender
-      || ownerToOperators[tokenOwner][msg.sender]
+      || isApprovedForAll(tokenOwner, msg.sender)
     );
     _;
   }

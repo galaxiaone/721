@@ -49,7 +49,7 @@ spec.beforeEach(async (ctx) => {
   const nfToken = await ctx.deploy({ 
     src: './build/Galaxia.json',
     contract: 'Galaxia',
-    args: ['Galaxia','GAX', '0xf57b2c51ded3a29e6891aba85459d600256cf317']
+    args: ['Galaxia','GAX']
   });
   ctx.set('nfToken', nfToken);
 });

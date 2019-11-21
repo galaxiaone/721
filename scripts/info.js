@@ -21,7 +21,7 @@ async function main () {
   const provider = new HDWalletProvider(MNEMONIC, `https://${NETWORK}.infura.io/v3/${INFURA_KEY}`)
   const web3Instance = new Web3(provider)
   if (NFT_CONTRACT_ADDRESS) {
-    const nftContract = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS, { gasLimit: '1000000' })
+    const nftContract = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS)
     const totalSupply = await nftContract.methods.totalSupply().call()
     const baseURI = await nftContract.methods.ipfsGateway().call()
     console.log('Total supply ', totalSupply)
