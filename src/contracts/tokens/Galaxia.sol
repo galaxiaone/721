@@ -12,17 +12,21 @@ contract Galaxia is
 {
   mapping (bytes32 => bool) public validUpgrade;
   uint256 public totalSupply;
+  bool private initialized;
 
   /**
-  * @dev Contract constructor.
+  * @dev Initialize 721 parameters
   * @param _name A descriptive name for a collection of NFTs.
   * @param _symbol An abbreviated name for NFTokens.
   */
-  constructor(string memory _name, string memory _symbol)
+  function initialize(string memory _name, string memory _symbol)
   public {
+    require(!initialized, "ALREADY INITIALIZED");
+    initialized = true;
     nftName = _name;
     nftSymbol = _symbol;
     gateway = "https://cloudflare-ipfs.com/ipfs/";
+    super.initializeOwner(msg.sender);
   }
 
   /**

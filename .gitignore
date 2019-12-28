@@ -10,3 +10,5 @@ ipfs/export
 ipfs/docker_images
 output/gateways.json
 output
+scripts/config.js
+src/keystores/

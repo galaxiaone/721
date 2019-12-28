@@ -80,10 +80,10 @@ contract Proxy {
     function resolver()
     public
     view
-    returns (address resolver) {
+    returns (address res) {
         bytes32 resolverSlot = RESOLVER_SLOT;
         assembly {
-        resolver := sload(resolverSlot)
+        res := sload(resolverSlot)
         }
     }
 

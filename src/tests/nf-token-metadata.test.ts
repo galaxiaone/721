@@ -46,11 +46,12 @@ spec.beforeEach(async (ctx) => {
 });
 
 spec.beforeEach(async (ctx) => {
+  const accounts = await ctx.web3.eth.getAccounts();
   const nfToken = await ctx.deploy({ 
     src: './build/Galaxia.json',
-    contract: 'Galaxia',
-    args: ['Galaxia','GAX']
+    contract: 'Galaxia'
   });
+  await nfToken.instance.methods.initialize('Galaxia','GAX').send({ from: accounts[0] })
   ctx.set('nfToken', nfToken);
 });
 

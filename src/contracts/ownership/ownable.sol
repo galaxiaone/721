@@ -11,8 +11,8 @@ contract Ownable
   /**
    * @dev Error constants.
    */
-  string public constant NOT_OWNER = "018001";
-  string public constant ZERO_ADDRESS = "018002";
+  string public constant NOT_OWNER = "NOT OWNER";
+  string public constant ZERO_ADDRESS = "ZERO ADDRESS";
 
   /**
    * @dev Current owner address.
@@ -30,21 +30,21 @@ contract Ownable
   );
 
   /**
-   * @dev The constructor sets the original `owner` of the contract to the sender account.
-   */
-  constructor()
-    public
-  {
-    owner = msg.sender;
-  }
-
-  /**
    * @dev Throws if called by any account other than the owner.
    */
   modifier onlyOwner()
   {
     require(msg.sender == owner, NOT_OWNER);
     _;
+  }
+
+    /**
+   * @dev Initializes an owner
+   */
+  function initializeOwner(address _owner)
+    internal
+  {
+    owner = _owner;
   }
 
   /**

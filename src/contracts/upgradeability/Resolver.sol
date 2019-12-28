@@ -4,7 +4,7 @@ import './Proxy.sol';
 import "../ownership/ownable.sol";
 
 
-// @title is where Proxy can lookup users version preference and update valid implementations
+// @title users contract version resolver
 contract Resolver is Ownable {
 
     Proxy public proxy;
@@ -16,7 +16,7 @@ contract Resolver is Ownable {
     constructor(address owner)
     public {
         proxy = Proxy(msg.sender);
-        transferOwnership(owner);
+        initializeOwner(owner);
     }
 
     // @notice user can set his preferred version of the contract here
@@ -26,7 +26,7 @@ contract Resolver is Ownable {
         userVersion[msg.sender] = addr;
     }
 
-    // @notice authorizes contracts to act as the implementation for Proxy
+    // @notice authorizes an optional upgrade for users
     function setValidImplementation(address addr, bool valid)
     public
     returns (bool) {
