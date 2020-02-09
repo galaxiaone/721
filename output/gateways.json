@@ -5,38 +5,290 @@
         "report": [
             {
                 "live": true,
+                "time": 336,
+                "asset": "AYN",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 133,
+                "asset": "AYN",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4129,
+                "asset": "Akira",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4134,
+                "asset": "Akira",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 242,
+                "asset": "Andron",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 143,
+                "asset": "Andron",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4159,
+                "asset": "Antini",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4101,
+                "asset": "Antini",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 845,
+                "asset": "AstralEnterprise",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 139,
+                "asset": "AstralEnterprise",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 674,
+                "asset": "Daitoppa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 172,
+                "asset": "Daitoppa",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4122,
+                "asset": "Distar",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4116,
+                "asset": "Distar",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 937,
+                "asset": "Fi-Re",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 164,
+                "asset": "Fi-Re",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 501,
+                "asset": "JamaSystems",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 123,
+                "asset": "JamaSystems",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 1188,
+                "asset": "Kyusa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 236,
+                "asset": "Kyusa",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 221,
+                "asset": "Lotus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 197,
+                "asset": "Lotus",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4110,
+                "asset": "Miugai",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4100,
+                "asset": "Miugai",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4130,
+                "asset": "MovaColony",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4101,
+                "asset": "MovaColony",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4132,
+                "asset": "earth",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4103,
+                "asset": "earth",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4123,
+                "asset": "jupiter",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4098,
+                "asset": "jupiter",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 2345,
+                "asset": "mars",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 299,
+                "asset": "mars",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 567,
+                "asset": "mercury",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 231,
+                "asset": "mercury",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 388,
+                "asset": "moon",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 179,
+                "asset": "moon",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 1425,
+                "asset": "neptune",
+                "type": "image"
+            },
+            {
+                "live": true,
                 "time": 337,
+                "asset": "neptune",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4127,
+                "asset": "pluto",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4106,
+                "asset": "pluto",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4151,
                 "asset": "saturn",
                 "type": "image"
             },
             {
-                "live": true,
-                "time": 263,
+                "live": false,
+                "time": 4104,
                 "asset": "saturn",
                 "type": "metadata"
             },
             {
-                "live": true,
-                "time": 170,
-                "asset": "mars",
+                "live": false,
+                "time": 4123,
+                "asset": "sun",
                 "type": "image"
             },
             {
-                "live": true,
-                "time": 210,
-                "asset": "mars",
+                "live": false,
+                "time": 4113,
+                "asset": "sun",
                 "type": "metadata"
             },
             {
                 "live": true,
-                "time": 146,
-                "asset": "MovaColony",
+                "time": 945,
+                "asset": "uranus",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 163,
-                "asset": "MovaColony",
+                "time": 241,
+                "asset": "uranus",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 917,
+                "asset": "venus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 281,
+                "asset": "venus",
                 "type": "metadata"
             }
         ]
@@ -47,122 +299,878 @@
         "report": [
             {
                 "live": true,
-                "time": 453,
-                "asset": "saturn",
+                "time": 275,
+                "asset": "AYN",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 327,
-                "asset": "saturn",
+                "time": 190,
+                "asset": "AYN",
                 "type": "metadata"
             },
             {
                 "live": true,
-                "time": 321,
-                "asset": "mars",
+                "time": 238,
+                "asset": "Akira",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 351,
-                "asset": "mars",
+                "time": 300,
+                "asset": "Akira",
                 "type": "metadata"
             },
             {
                 "live": true,
-                "time": 234,
+                "time": 733,
+                "asset": "Andron",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 298,
+                "asset": "Andron",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4163,
+                "asset": "Antini",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4185,
+                "asset": "Antini",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 266,
+                "asset": "AstralEnterprise",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 411,
+                "asset": "AstralEnterprise",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 603,
+                "asset": "Daitoppa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 186,
+                "asset": "Daitoppa",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 2308,
+                "asset": "Distar",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4176,
+                "asset": "Distar",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4099,
+                "asset": "Fi-Re",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4125,
+                "asset": "Fi-Re",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 239,
+                "asset": "JamaSystems",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 146,
+                "asset": "JamaSystems",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 1008,
+                "asset": "Kyusa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 354,
+                "asset": "Kyusa",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 301,
+                "asset": "Lotus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 307,
+                "asset": "Lotus",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 503,
+                "asset": "Miugai",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4143,
+                "asset": "Miugai",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 411,
                 "asset": "MovaColony",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 251,
+                "time": 216,
                 "asset": "MovaColony",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 676,
+                "asset": "earth",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 364,
+                "asset": "earth",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 597,
+                "asset": "jupiter",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 484,
+                "asset": "jupiter",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 518,
+                "asset": "mars",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4140,
+                "asset": "mars",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 425,
+                "asset": "mercury",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 1577,
+                "asset": "mercury",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4093,
+                "asset": "moon",
+                "type": "image"
+            },
+            {
+                "live": false,
+                "time": 4127,
+                "asset": "moon",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 2122,
+                "asset": "neptune",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 617,
+                "asset": "neptune",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 522,
+                "asset": "pluto",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 962,
+                "asset": "pluto",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 671,
+                "asset": "saturn",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 414,
+                "asset": "saturn",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4191,
+                "asset": "sun",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 838,
+                "asset": "sun",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4152,
+                "asset": "uranus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 478,
+                "asset": "uranus",
+                "type": "metadata"
+            },
+            {
+                "live": false,
+                "time": 4180,
+                "asset": "venus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 550,
+                "asset": "venus",
                 "type": "metadata"
             }
         ]
     },
     {
         "name": "galaxia",
-        "url": "http://159.89.98.184:8080/ipfs/",
+        "url": "http://46.101.151.105:8080/ipfs/",
         "report": [
             {
                 "live": true,
-                "time": 2884,
-                "asset": "saturn",
+                "time": 135,
+                "asset": "AYN",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 2831,
-                "asset": "saturn",
+                "time": 156,
+                "asset": "AYN",
                 "type": "metadata"
             },
             {
                 "live": true,
-                "time": 2279,
-                "asset": "mars",
+                "time": 84,
+                "asset": "Akira",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 3706,
-                "asset": "mars",
+                "time": 86,
+                "asset": "Akira",
                 "type": "metadata"
             },
             {
                 "live": true,
-                "time": 801,
+                "time": 166,
+                "asset": "Andron",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 174,
+                "asset": "Andron",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 190,
+                "asset": "Antini",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 149,
+                "asset": "Antini",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 89,
+                "asset": "AstralEnterprise",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 88,
+                "asset": "AstralEnterprise",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 121,
+                "asset": "Daitoppa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 127,
+                "asset": "Daitoppa",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 190,
+                "asset": "Distar",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 190,
+                "asset": "Distar",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 151,
+                "asset": "Fi-Re",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 143,
+                "asset": "Fi-Re",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 80,
+                "asset": "JamaSystems",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 87,
+                "asset": "JamaSystems",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 205,
+                "asset": "Kyusa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 189,
+                "asset": "Kyusa",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 184,
+                "asset": "Lotus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 181,
+                "asset": "Lotus",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 370,
+                "asset": "Miugai",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 271,
+                "asset": "Miugai",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 167,
                 "asset": "MovaColony",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 681,
+                "time": 177,
                 "asset": "MovaColony",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 404,
+                "asset": "earth",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 458,
+                "asset": "earth",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 742,
+                "asset": "jupiter",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 517,
+                "asset": "jupiter",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 414,
+                "asset": "mars",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 400,
+                "asset": "mars",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 274,
+                "asset": "mercury",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 341,
+                "asset": "mercury",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 250,
+                "asset": "moon",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 228,
+                "asset": "moon",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 499,
+                "asset": "neptune",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 495,
+                "asset": "neptune",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 234,
+                "asset": "pluto",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 295,
+                "asset": "pluto",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 424,
+                "asset": "saturn",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 519,
+                "asset": "saturn",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 865,
+                "asset": "sun",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 721,
+                "asset": "sun",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 444,
+                "asset": "uranus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 399,
+                "asset": "uranus",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 356,
+                "asset": "venus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 625,
+                "asset": "venus",
                 "type": "metadata"
             }
         ]
     },
     {
         "name": "backup",
-        "url": "http://165.22.225.147:8080/ipfs/",
+        "url": "http://46.101.151.105:8080/ipfs/",
         "report": [
             {
                 "live": true,
-                "time": 1133,
-                "asset": "saturn",
+                "time": 176,
+                "asset": "AYN",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 1080,
-                "asset": "saturn",
+                "time": 130,
+                "asset": "AYN",
                 "type": "metadata"
             },
             {
                 "live": true,
-                "time": 1683,
-                "asset": "mars",
+                "time": 90,
+                "asset": "Akira",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 790,
-                "asset": "mars",
+                "time": 81,
+                "asset": "Akira",
                 "type": "metadata"
             },
             {
                 "live": true,
-                "time": 721,
+                "time": 182,
+                "asset": "Andron",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 184,
+                "asset": "Andron",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 164,
+                "asset": "Antini",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 158,
+                "asset": "Antini",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 80,
+                "asset": "AstralEnterprise",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 94,
+                "asset": "AstralEnterprise",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 136,
+                "asset": "Daitoppa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 121,
+                "asset": "Daitoppa",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 179,
+                "asset": "Distar",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 169,
+                "asset": "Distar",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 159,
+                "asset": "Fi-Re",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 118,
+                "asset": "Fi-Re",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 82,
+                "asset": "JamaSystems",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 80,
+                "asset": "JamaSystems",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 202,
+                "asset": "Kyusa",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 181,
+                "asset": "Kyusa",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 209,
+                "asset": "Lotus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 206,
+                "asset": "Lotus",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 212,
+                "asset": "Miugai",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 225,
+                "asset": "Miugai",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 169,
                 "asset": "MovaColony",
                 "type": "image"
             },
             {
                 "live": true,
-                "time": 353,
+                "time": 164,
                 "asset": "MovaColony",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 550,
+                "asset": "earth",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 446,
+                "asset": "earth",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 569,
+                "asset": "jupiter",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 540,
+                "asset": "jupiter",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 340,
+                "asset": "mars",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 329,
+                "asset": "mars",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 379,
+                "asset": "mercury",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 307,
+                "asset": "mercury",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 337,
+                "asset": "moon",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 208,
+                "asset": "moon",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 566,
+                "asset": "neptune",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 474,
+                "asset": "neptune",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 228,
+                "asset": "pluto",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 255,
+                "asset": "pluto",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 468,
+                "asset": "saturn",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 472,
+                "asset": "saturn",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 852,
+                "asset": "sun",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 741,
+                "asset": "sun",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 341,
+                "asset": "uranus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 343,
+                "asset": "uranus",
+                "type": "metadata"
+            },
+            {
+                "live": true,
+                "time": 336,
+                "asset": "venus",
+                "type": "image"
+            },
+            {
+                "live": true,
+                "time": 309,
+                "asset": "venus",
                 "type": "metadata"
             }
         ]

@@ -6,7 +6,7 @@ const root = path.resolve('.')
 require('dotenv').config({ path: path.join(root, '/.env') })
 
 // Contract ABI & Bytecode
-const NFT_ABI = require(path.join(root, '/src/build/Galaxia.json'))
+const NFT_ABI = require(path.join(root, '/build/Galaxia.json')).Galaxia.abi
 const assetInfo = require(path.join(root, '/ipfs/assets/deployed-assets.json'))
 
 const MNEMONIC = process.env.PRIVATE_KEY
@@ -40,7 +40,8 @@ async function main () {
     process.exit(1)
   }
   try {
-    galaxia = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS, { gasLimit: '1000000' })
+    const abi = NFT_ABI
+    galaxia = new web3Instance.eth.Contract(abi, NFT_CONTRACT_ADDRESS, { gasLimit: '1000000' })
     const galaxiaOwner = await galaxia.methods.owner().call()
     console.log('account, ', account, ' galaxia ownner ', galaxiaOwner)
     if (account !== galaxiaOwner) {
@@ -55,6 +56,7 @@ async function main () {
     start = alreadyMinted
   } catch (err) {
     console.log(err)
+    process.exit(1)
   }
   // Planets issued directly to the owner.
   for (const asset of assetInfo) {
@@ -72,6 +74,7 @@ async function main () {
       }
     } catch (err) {
       console.log(err)
+      process.exit(1)
     }
   }
   console.log('Successfully minted all planets')

@@ -58,7 +58,7 @@ spec.beforeEach(async (ctx) => {
     args: [nfToken.instance._address]
   })
   const galaxia = new ctx.web3.eth.Contract(nfToken.instance._jsonInterface, proxy.instance._address)
-  // const init = await galaxia.methods.initialize('Galaxia', 'GAX').send({ from: accounts[0] })
+  const init = await galaxia.methods.initialize('Galaxia', 'GAX').send({ from: accounts[0] })
   console.log(galaxia)
   ctx.set('nfToken', nfToken)
   ctx.set('galaxia', galaxia)

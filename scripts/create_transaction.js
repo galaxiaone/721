@@ -8,7 +8,7 @@ const INFURA_KEY = process.env.INFURA
 const NFT_CONTRACT_ADDRESS = process.env.CONTRACT
 const NETWORK = process.env.NETWORK
 
-const CHAIN_IDS = { mainnet: 1, rinkeby: 4 }
+const CHAIN_IDS = { mainnet: 1, ropsten: 3, rinkeby: 4 }
 
 const OK = (value) => {
   return { err: null, result: value }
@@ -88,6 +88,7 @@ const main = async () => {
 
   const tx = new TransactionBuilder(NFT_CONTRACT_ADDRESS, gasLimit, gasPrice, 0)
   console.log('address ', tx.wallet.address)
+  // construct mint() call
   const method = {
     types: ['address', 'string'],
     data: [tx.wallet.address, 'QmQ8RrnVwkwwvNoRMEcR49EKtQAni1wzc8suZZZBZApjBo'],

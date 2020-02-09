@@ -2,7 +2,7 @@ version: '2'
 services:
   ipfs:
     image: ipfs/go-ipfs:master
-    working_dir: /home/kyle/.ipfs/
+    working_dir: /home/galaxia/.ipfs/
     hostname: ipfs_host
     volumes:
     - "./export:/export"

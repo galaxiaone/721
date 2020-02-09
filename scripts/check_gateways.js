@@ -7,7 +7,7 @@ var path = require('path')
 const root = path.resolve('.')
 // require('dotenv')
 
-const GALAXIA_ABI = require('../src/build/Galaxia.json')
+// const GALAXIA_ABI = require('../build/Galaxia.json').Galaxia.abi
 
 // Asset data
 const IMAGES_DIR = './ipfs/assets/images/v1/'
@@ -34,12 +34,12 @@ const gatewayBenchmark = [
   },
   {
     name: 'galaxia',
-    url: 'http://159.89.98.184:8080/ipfs/',
+    url: 'http://46.101.151.105:8080/ipfs/',
     report: []
   },
   {
     name: 'backup',
-    url: 'http://165.22.225.147:8080/ipfs/',
+    url: 'http://46.101.151.105:8080/ipfs/',
     report: []
   }
 ]
@@ -47,7 +47,6 @@ const gatewayBenchmark = [
 const deadAssets = []
 
 const readDir = util.promisify(fs.readdir)
-const readFile = util.promisify(fs.readFile)
 const getAsset = util.promisify(wget)
 const wait = util.promisify(setTimeout)
 
@@ -67,20 +66,19 @@ async function main () {
     const gifFiles = await readDir(IMAGES_DIR)
     const metadataFiles = await readDir(METADATA_DIR)
     checkDirectoryMatch(gifFiles, metadataFiles)
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < gifFiles.length; i++) {
       await wait(500)
       const data = { id: '', imageHash: '', metadata: '', name: '' }
       let gifLocation
       let metadataLocation
       let ipfsHash
       let iter = 0
-      const rand = getRandomInt(gifFiles.length)
       for (const gateway of gatewayBenchmark) {
         console.log('checking asset for gateway ', gateway.name)
         try {
-          const GIF = gifFiles[rand]
-          const Metadata = metadataFiles[rand]
-          ipfsHash = IPFS_HASHES[rand]
+          const GIF = gifFiles[i]
+          const Metadata = metadataFiles[i]
+          ipfsHash = IPFS_HASHES[i]
           const assetName = GIF.slice(0, GIF.length - 4)
           const nameCheck = Metadata.slice(0, Metadata.length - 5)
           if (assetName !== nameCheck) {
@@ -90,7 +88,7 @@ async function main () {
           }
           gifLocation = `${IMAGES_DIR}${GIF}`
           metadataLocation = `${METADATA_DIR}${Metadata}`
-          data.id = rand
+          data.id = i
           data.name = assetName
 
           // // TODO: check data hashes

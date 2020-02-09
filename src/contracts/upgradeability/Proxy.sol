@@ -14,7 +14,7 @@ contract Proxy {
     bytes32 private constant RESOLVER_SLOT = keccak256(abi.encodePacked("resolver.address"));
 
 
-    // @dev Fallback function delegates call to implementing address
+    // @dev Fallback function delegates call to users preferred contract version
     function ()
     external
     payable {
